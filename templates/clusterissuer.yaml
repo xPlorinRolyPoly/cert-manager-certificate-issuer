@@ -9,3 +9,8 @@ spec:
     email: {{ .Values.clusterIssuer.acme.email }}
     privateKeySecretRef:
       name: {{ .Values.component }}-cluster-issuer-key
+    {{- if .Values.clusterIssuer.acme.solvers }}
+    solvers:
+{{ toYaml .Values.clusterIssuer.acme.solvers | indent 6 }}
+    {{- end }}
+   

@@ -34,6 +34,7 @@ clusterIssuer:
     caBundle: ""
     serverUrl: ""
     email: "DL-DE-IT-SYSTEM-TEAM@sky.de"
+    solvers: []
 
 # Test configuration
 tests:
