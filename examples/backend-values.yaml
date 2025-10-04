@@ -1,0 +1,36 @@
+# Example values for backend component
+# Release name: backend-certificate-issuer
+
+component: "backend"
+namespace: "istio-system"
+
+certificate:
+  duration: "8760h"  # 1 year
+  renewBefore: "720h"  # 30 days
+  commonName: "backend.prod.example.com"
+  dnsNames:
+    - "backend.prod.example.com"
+    - "api.backend.prod.example.com"
+    - "admin.backend.prod.example.com"
+  subject:
+    organizations:
+      - "DEF AG"
+    organizationalUnits:
+      - "Infrastruktur"
+    countries:
+      - "DE"
+    provinces:
+      - "Hessen"
+    localities:
+      - "Frankfurt"
+
+clusterIssuer:
+  acme:
+    caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t..."  # Base64 encoded CA bundle
+    serverUrl: "https://acme.prod.example.com/v2/acme"
+    email: "DL-DEF@xyz.de"
+
+tests:
+  enabled: true
+  clusterIssuerTimeout: 300  # 5 minutes
+  certificateTimeout: 600    # 10 minutes

@@ -1,0 +1,35 @@
+# Example values for frontend component  
+# Release name: frontend-certificate-issuer
+
+component: "frontend"
+namespace: "istio-system"
+
+certificate:
+  duration: "8760h"  # 1 year
+  renewBefore: "720h"  # 30 days
+  commonName: "frontend.prod.example.com"
+  dnsNames:
+    - "frontend.prod.example.com"
+    - "www.frontend.prod.example.com"
+  subject:
+    organizations:
+      - "BlaBla GmbH"
+    organizationalUnits:
+      - "IT"
+    countries:
+      - "DE"
+    provinces:
+      - "Nordrhein-Westfalen"
+    localities:
+      - "Bonn"
+
+clusterIssuer:
+  acme:
+    caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t..."  # Base64 encoded CA bundle
+    serverUrl: "https://acme.prod.example.com/v2/acme"
+    email: "DL-BLA@xyz.de"
+
+tests:
+  enabled: true
+  clusterIssuerTimeout: 300  # 5 minutes
+  certificateTimeout: 600    # 10 minutes
