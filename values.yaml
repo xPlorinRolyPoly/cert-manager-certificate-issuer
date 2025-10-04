@@ -1,0 +1,43 @@
+# Default values for cert-manager-certificates
+# This is a YAML-formatted file.
+# Declare variables to be substituted into your templates.
+
+# Component name - this should match the component part of your release name
+# For release name "backend-certificate-issuer", component should be "backend"
+component: "default"
+namespace: "istio-system"
+
+# Override the chart name
+nameOverride: ""
+# Override the full name (if you don't want to use release name)
+fullnameOverride: ""
+
+certificate:
+  duration: "8760h"  # 1 year
+  renewBefore: "720h"  # 30 days
+  commonName: ""
+  dnsNames: []
+  subject:
+    organizations:
+      - "Sky Limited"
+    organizationalUnits:
+      - "IS"
+    countries:
+      - "GB"
+    provinces:
+      - "Middlesex"
+    localities:
+      - "Isleworth"
+
+clusterIssuer:
+  acme:
+    caBundle: ""
+    serverUrl: ""
+    email: "DL-DE-IT-SYSTEM-TEAM@sky.de"
+
+# Test configuration
+tests:
+  enabled: true
+  # Timeout for tests in seconds
+  clusterIssuerTimeout: 300  # 5 minutes
+  certificateTimeout: 600    # 10 minutes

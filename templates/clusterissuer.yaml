@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ .Values.component }}-cluster-issuer
+spec:
+  acme:
+    caBundle: {{ .Values.clusterIssuer.acme.caBundle }}
+    server: {{ .Values.clusterIssuer.acme.serverUrl }}
+    email: {{ .Values.clusterIssuer.acme.email }}
+    privateKeySecretRef:
+      name: {{ .Values.component }}-cluster-issuer-key

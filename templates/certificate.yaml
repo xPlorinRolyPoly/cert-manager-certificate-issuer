@@ -1,0 +1,39 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.component }}-certificate 
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: {{ .Values.component }}-ingressgateway-certs
+  duration: {{ .Values.certificate.duration }}
+  renewBefore: {{ .Values.certificate.renewBefore }}
+  subject:
+    organizations:
+    {{- range .Values.certificate.subject.organizations }}
+      - {{ . | quote }}
+    {{- end }}
+    organizationalUnits:
+    {{- range .Values.certificate.subject.organizationalUnits }}
+      - {{ . | quote }}
+    {{- end }}
+    countries:
+    {{- range .Values.certificate.subject.countries }}
+      - {{ . | quote }}
+    {{- end }}
+    provinces:
+    {{- range .Values.certificate.subject.provinces }}
+      - {{ . | quote }}
+    {{- end }}
+    localities:
+    {{- range .Values.certificate.subject.localities }}
+      - {{ . | quote }}
+    {{- end }}
+  commonName: {{ .Values.certificate.commonName }}
+  dnsNames:
+  {{- range .Values.certificate.dnsNames }}
+    - {{ . | quote }}
+  {{- end }}
+  issuerRef:
+    name: {{ .Values.component }}-cluster-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
