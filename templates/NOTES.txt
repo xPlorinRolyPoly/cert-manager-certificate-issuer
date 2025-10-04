@@ -1,0 +1,21 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+The following resources have been created:
+- ClusterIssuer: {{ .Values.component }}-cluster-issuer
+- Certificate: {{ .Values.component }}-certificate (in namespace: {{ .Values.namespace }})
+
+The certificate will be stored in secret: {{ .Values.component }}-ingressgateway-certs
+
+To get the status of your certificate:
+  kubectl get certificate {{ .Values.component }}-certificate -n {{ .Values.namespace }}
+
+To get the status of your cluster issuer:
+  kubectl get clusterissuer {{ .Values.component }}-cluster-issuer
+
+Certificate details:
+- Common Name: {{ .Values.certificate.commonName }}
+- DNS Names: {{ .Values.certificate.dnsNames }}
+- Duration: {{ .Values.certificate.duration }}
+- Renew Before: {{ .Values.certificate.renewBefore }}
