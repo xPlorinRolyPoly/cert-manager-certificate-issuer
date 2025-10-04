@@ -29,6 +29,15 @@ clusterIssuer:
     caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t..."  # Base64 encoded CA bundle
     serverUrl: "https://acme.prod.example.com/v2/acme"
     email: "DL-DEF@xyz.de"
+    solvers:
+      - dns01:
+        cloudDNS:
+          # The ID of the GCP project
+          project: $PROJECT_ID
+          # This is the secret used to access the service account
+          serviceAccountSecretRef:
+            name: clouddns-dns01-solver-svc-acct
+            key: key.json
 
 tests:
   enabled: true
