@@ -19,21 +19,21 @@ certificate:
   dnsNames: []
   subject:
     organizations:
-      - "Sky Limited"
+      - "ABC GmbH"
     organizationalUnits:
       - "IS"
     countries:
-      - "GB"
+      - "DE"
     provinces:
-      - "Middlesex"
+      - "Bayern"
     localities:
-      - "Isleworth"
+      - "Muenchen"
 
 clusterIssuer:
   acme:
     caBundle: ""
     serverUrl: ""
-    email: "DL-DE-IT-SYSTEM-TEAM@sky.de"
+    email: "DL-ABC@xyz.de"
     solvers: []
 
 # Test configuration
